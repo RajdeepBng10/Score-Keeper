@@ -1,98 +1,52 @@
-let boxes = document.querySelectorAll(".box");
-let reset= document.querySelector("#reset");
-let newGameBtn= document.querySelector("#new-btn");
-let msgContainer = document.querySelector(".msg-container");
-let msg = document.querySelector("#msg");
+let score1 = 0;
+let score2 = 0;
+let maxScore = 3; 
+let player1=document.querySelector('#player1');
+let player2=document.querySelector('#player2');
 let audioTurn = new Audio("ting.mp3")
 
-let turnO = true;
-let count= 0;
+function updateScore(player) {
+    if (player === 1) {
+        score1++;
+    } else {
+        score2++;
+    }
 
-const winPatterns = [
-    [0,1,2],
-    [0,3,6],
-    [0,4,8],
-    [1,4,7],
-    [2,5,8],
-    [2,4,6],
-    [3,4,5],
-    [6,7,8],
-];
+    audioTurn.play();
 
-const resetGame = () => {
-    turnO= true;
-    enableBoxes();
-    msgContainer.classList.add("hide");
+    document.getElementById('p1').textContent = score1;
+    document.getElementById('p2').textContent = score2;
+
+    if (score1 === maxScore || score2 === maxScore) {
+        endGame();
+    }
 }
 
-boxes.forEach((box) => {
-    box.addEventListener("click",() => {
-        console.log("box was clicked");
-        if(turnO)
-        {
-        audioTurn.play();
-        box.innerText = "O";
-        box.style.color = "green";
-        turnO=false;
-        }
-        else{
-            audioTurn.play();
-            box.innerText = "X";
-            box.style.color= "#b0413e";
-            turnO=true;
-        }
-        box.disabled=true;
-        count++;
+function resetGame() {
+    score1 = 0;
+    score2 = 0;
+    player1.disabled = false;
+    player2.disabled = false;
+    document.getElementById('p1').textContent = '0';
+    document.getElementById('p2').textContent = '0';
+    document.getElementById('p1').style.color = '#333';
+    document.getElementById('p2').style.color = '#333';
+}
 
-        let isWinner=checkWinner();
+function endGame() {
+    if (score1 === maxScore) {
+        document.getElementById('p1').style.color = 'green';
+        document.getElementById('p2').style.color = 'red';
+    } else {
+        document.getElementById('p1').style.color = 'red';
+        document.getElementById('p2').style.color = 'green';
+    }
 
-        if(count==9 && !isWinner) {
-            gameDraw();
-        }
-    });
+    player1.disabled = true;
+    player2.disabled = true;
+}
+
+document.getElementById('maxscore').addEventListener('change', function () {
+    maxScore = parseInt(this.value);
+    resetGame();
 });
-
-const gameDraw = () => {
-    msg.innerText = `Game was a Draw.`;
-    msgContainer.classList.remove("hide");
-    disableBoxes();
-};
-
-const disableBoxes = () => {
-    for(let box of boxes) {
-        box.disabled = true ;
-    }
-}
-
-const enableBoxes = () => {
-    for(let box of boxes) {
-        box.disabled = false ;
-        box.innerText="";
-    }
-}
-
-const showWinner = (winner) => {
-    msg.innerText=`Congratulations, Winner is ${winner}`;
-    msgContainer.classList.remove("hide");
-    disableBoxes();
-}
-
-
-const checkWinner = () => {
-    for(let pattern of winPatterns) {
-        let pos1Val = boxes[pattern[0]].innerText;
-        let pos2Val = boxes[pattern[1]].innerText;
-        let pos3Val = boxes[pattern[2]].innerText;
-
-        if(pos1Val!="" && pos2Val!="" && pos3Val!="") {
-            if(pos1Val === pos2Val && pos2Val===pos3Val) {
-                console.log("winner",pos1Val)
-                showWinner(pos1Val);
-            }        
-        }
-        
-    }
-}
-
-newGameBtn.addEventListener("click",resetGame);
-reset.addEventListener("click",resetGame);
