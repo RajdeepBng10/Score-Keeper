@@ -17,7 +17,10 @@ function updateScore(player) {
     document.getElementById('p1').textContent = score1;
     document.getElementById('p2').textContent = score2;
 
-    if (score1 === maxScore || score2 === maxScore) {
+    if (score1 === maxScore ) {
+        endGame();
+    }
+    else if(score2 === maxScore) {
         endGame();
     }
 }
