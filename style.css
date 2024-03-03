@@ -1,78 +1,100 @@
-*{
-    margin:0;
-    padding:0;
-}
-
 body{
-    background-color: #548687;
-    text-align: center;
+    font-family: Roboto;
 }
 
-.container{
-    height: 70vh;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5vmin;
+img{
+    width: 50vh;
 }
 
-.game{
-    height: 60vmin;
-    width: 60vmin;
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5vmin;
+main{
+    margin-left: 40%;
+    width:50vh;
+    border: 2px solid rgba(57, 56, 56, 0.796);
+    border-radius: 1%;
 }
 
-.box{
-    height: 18vmin;
-    width: 18vmin;
-    border-radius: 1rem;
+main div{
+    display: flex;
+    flex:1;
+}
+
+main div button{
+    flex-grow: 1;
+    padding:10px;
     border: none;
-    box-shadow: 0 0 1rem rgba(0,0,0,0.1);
-    font-size: 10vmin;
-    color: #b0413e;
-    background-color: #fff;
+    border-radius: 5%;
+    font-family:Roboto;
+}
+
+h3{
+    border: 1px solid rgba(57, 56, 56, 0.796);
+    border-left-width: 0;
+    border-right-width: 0;
+    margin: 0;
+    padding:5px;
+}
+
+p{
+    padding:5px;
+    margin: 0;
+}
+
+h2{
+    padding:5px;
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+
+h1{
+    padding:5px;
+    margin: 0;
+    margin-top: 2px;
+}
+
+#player1{
+    background-color: #F57D1F;
+}
+
+#player2{
+    background-color: #EBF400;
 }
 
 #reset{
-    padding:1rem;
-    font-size: 1.25rem;
-    background-color: #191913;
-    color: #fff;
-    border: none;
-    border-radius: 0.75rem;
+    background-color: #F72798;
 }
 
-#new-btn{
-    padding:1rem;
-    font-size: 1.25rem;
-    background-color: #191913;
-    color: #fff;
-    border: none;
-    border-radius: 0.75rem;
+main div button:hover {
+    filter: brightness(1.2);
+    background-color: inherit; 
+    color: #333; 
+    cursor:pointer;
 }
 
-#msg{
-    color: #ffffc7;
-    font-size: 8vmin;
+body {
+    background-image: url('bgimg4.avif');
+    background-size:cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-color: #f0f0f0;
 }
 
-.msg-container{
-    height: 100vmin;
-    display: flex;
-    justify-content: center ;
-    align-items: center;
-    flex-direction: column ;
-    gap: 4rem;
+select {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+
+    padding: 10px;
+    border: 1px solid rgba(57, 56, 56, 0.796);
+    border-radius: 5px;
+    outline: none;
+    background: transparent;
+    color: #333;
 }
 
-.hide{
-    display: none;
+select:hover {
+    border-color: #aaa;
 }
 
-button.box:hover{
-    background-color: #ffffc7;
+select:focus {
+    border-color: #555;
+    box-shadow: 0 0 5px rgba(85, 85, 85, 0.5);
 }
