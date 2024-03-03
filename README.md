@@ -1,2 +1,2 @@
 # Score-Keeper
-Simple web page to maintain the score of a ping pong game
+Simple web page to track the score of a ping pong game
