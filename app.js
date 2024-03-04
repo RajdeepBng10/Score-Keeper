@@ -17,10 +17,10 @@ function updateScore(player) {
     document.getElementById('p1').textContent = score1;
     document.getElementById('p2').textContent = score2;
 
-    if (score1 === maxScore ) {
+    if (score1 >= maxScore && Math.abs(score1-score2)>1) {
         endGame();
     }
-    else if(score2 === maxScore) {
+    else if(score2 >= maxScore && Math.abs(score1-score2)>1) {
         endGame();
     }
 }
@@ -37,7 +37,7 @@ function resetGame() {
 }
 
 function endGame() {
-    if (score1 === maxScore) {
+    if (score1 >= maxScore) {
         document.getElementById('p1').style.color = 'green';
         document.getElementById('p2').style.color = 'red';
     } else {
