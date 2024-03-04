@@ -3,6 +3,8 @@ let score2 = 0;
 let maxScore = 3; 
 let player1=document.querySelector('#player1');
 let player2=document.querySelector('#player2');
+let p1=document.querySelector('#p1');
+let p2=document.querySelector('#p2');
 let audioTurn = new Audio("ting.mp3")
 
 function updateScore(player) {
@@ -17,10 +19,12 @@ function updateScore(player) {
     document.getElementById('p1').textContent = score1;
     document.getElementById('p2').textContent = score2;
 
-    if (score1 >= maxScore && Math.abs(score1-score2)>1) {
+    if (score1 >= maxScore && Math.abs(score1-score2)>1 && score1>score2) {
+        console.log('Player 1 Won');
         endGame();
     }
-    else if(score2 >= maxScore && Math.abs(score1-score2)>1) {
+    else if(score2 >= maxScore && Math.abs(score1-score2)>1 && score2>score1) {
+        console.log('Player 2 Won');
         endGame();
     }
 }
@@ -37,7 +41,7 @@ function resetGame() {
 }
 
 function endGame() {
-    if (score1 >= maxScore) {
+    if (score1 >= score2) {
         document.getElementById('p1').style.color = 'green';
         document.getElementById('p2').style.color = 'red';
     } else {
